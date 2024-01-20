@@ -127,7 +127,7 @@ button:hover {
 
 @keyframes expand {
   0% {
-      text-size-adjust: ;
+    font-size: 1rem;
   }
   100% {
     font-size: 1.2rem;
@@ -141,7 +141,6 @@ button:hover {
 
 
 #games-button:hover {
-    color: var(--foreground);
     background-color: var(--secondary);
     border-color: var(--background-alt);
     border-radius: 5px;
