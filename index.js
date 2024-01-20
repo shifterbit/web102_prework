@@ -223,3 +223,12 @@ runnerUp.innerHTML = `
 	<p>$${second.pledged.toLocaleString("en-US")}</p>
 `;
 secondGameContainer.appendChild(runnerUp);
+
+const gamesButton = document.getElementById("games-button")
+gamesButton.addEventListener("click", scrollToGames)
+
+function scrollToGames() {
+    const gamesList = document.getElementById("games-container").offsetTop
+    window.scrollTo({top: gamesList, behavior: "smooth"})
+    
+}
