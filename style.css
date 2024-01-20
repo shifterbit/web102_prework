@@ -30,6 +30,10 @@ body {
   margin-top: -10px;
 }
 
+.header-text + .header-text {
+    margin-left: 2rem;
+}
+
 .stats-container {
   display: flex;
 }
@@ -123,7 +127,7 @@ button:hover {
 
 @keyframes expand {
   0% {
-    font-size: 1rem;
+      text-size-adjust: ;
   }
   100% {
     font-size: 1.2rem;
@@ -133,4 +137,14 @@ button:hover {
 .active {
   background-color: var(--foreground);
   color: #fff;
+}
+
+
+#games-button:hover {
+    color: var(--foreground);
+    background-color: var(--secondary);
+    border-color: var(--background-alt);
+    border-radius: 5px;
+    border-width: medium;
+    border-style: solid;
 }
