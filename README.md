@@ -24,8 +24,9 @@ The following **optional** features are implemented:
 ## Video Walkthrough
 
 Here's a walkthrough of implemented features:
+https://imgur.com/HL4mOVy.gif
+<img src='https://i.imgur.com/HL4mOVy.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
-https://i.imgur.com/HL4mOVy.mp4
 <!-- Replace this with whatever GIF tool you used! -->
 Recorded with [OBS Studio](https://obsproject.com/)
 <!-- Recommended tools:
