@@ -236,7 +236,7 @@ const gamesButton = document.getElementById("games-button");
 gamesButton.addEventListener("click", scrollToGames);
 
 function scrollToGames() {
-  const gamesList = document.getElementById("games-container").offsetTop;
+  const gamesList = document.getElementById("search-box").offsetTop;
   window.scrollTo({ top: gamesList, behavior: "smooth" });
 }
 
