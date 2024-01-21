@@ -11,6 +11,7 @@ import GAMES_DATA from "./games.js";
 const GAMES_JSON = JSON.parse(GAMES_DATA);
 
 let currGames = GAMES_JSON;
+let filteredGames = GAMES_JSON;
 
 // remove all child elements from a parent element in the DOM
 function deleteChildElements(parent) {
@@ -130,6 +131,7 @@ function filterUnfundedOnly() {
   const unfundedGames = GAMES_JSON.filter((game) => {
     return game.pledged < game.goal;
   });
+  filteredGames = unfundedGames;
 
   // use the function we previously created to add the unfunded games to the DOM
   addGamesToPage(unfundedGames);
@@ -146,6 +148,7 @@ function filterFundedOnly() {
   const fundedGames = GAMES_JSON.filter((game) => {
     return game.pledged >= game.goal;
   });
+  filteredGames = fundedGames;
 
   // use the function we previously created to add unfunded games to the DOM
   addGamesToPage(fundedGames);
@@ -157,6 +160,8 @@ function showAllGames() {
   deleteChildElements(gamesContainer);
 
   allBtn.classList.add("active");
+
+  filteredGames = GAMES_JSON;
   // add all games from the JSON data to the DOM
   addGamesToPage(GAMES_JSON);
 }
@@ -236,9 +241,13 @@ function scrollToGames() {
 }
 
 function searchGames(searchTerm) {
+  if (searchTerm === "") {
+    addGamesToPage(filteredGames);
+    return;
+  }
   let matches = [];
-  for (var i = 0; i < currGames.length; i++) {
-    const curr = currGames[i];
+  for (var i = 0; i < filteredGames.length; i++) {
+    const curr = filteredGames[i];
     if (curr.name.toLowerCase().includes(searchTerm.toLowerCase())) {
       matches.push(curr);
     }
@@ -249,10 +258,17 @@ function searchGames(searchTerm) {
 }
 
 function applySearchTerms(elem) {
-  const searchTerm = elem.target.value;
+  const searchTerm = elem.value;
   searchGames(searchTerm);
 }
 
 const searchBar = document.getElementById("search-box");
 
-searchBar.addEventListener("input", applySearchTerms);
+searchBar.addEventListener("input", () => {
+    applySearchTerms(searchBar);
+});
+searchBar.addEventListener("keydown", ({ key }) => {
+  if (["Backspace", "Delete"].includes(key)) {
+    applySearchTerms(searchBar);
+  }
+});
