@@ -10,6 +10,8 @@ import GAMES_DATA from "./games.js";
 // create a list of objects to store the data about the games using JSON.parse
 const GAMES_JSON = JSON.parse(GAMES_DATA);
 
+let currGames = GAMES_JSON;
+
 // remove all child elements from a parent element in the DOM
 function deleteChildElements(parent) {
   while (parent.firstChild) {
@@ -49,6 +51,7 @@ function addGamesToPage(games) {
     // append the game to the games-container
     gamesContainer.appendChild(game);
   }
+  currGames = games;
 }
 
 // call the function we just defined using the correct variable
@@ -224,11 +227,32 @@ runnerUp.innerHTML = `
 `;
 secondGameContainer.appendChild(runnerUp);
 
-const gamesButton = document.getElementById("games-button")
-gamesButton.addEventListener("click", scrollToGames)
+const gamesButton = document.getElementById("games-button");
+gamesButton.addEventListener("click", scrollToGames);
 
 function scrollToGames() {
-    const gamesList = document.getElementById("games-container").offsetTop
-    window.scrollTo({top: gamesList, behavior: "smooth"})
-    
+  const gamesList = document.getElementById("games-container").offsetTop;
+  window.scrollTo({ top: gamesList, behavior: "smooth" });
 }
+
+function searchGames(searchTerm) {
+  let matches = [];
+  for (var i = 0; i < currGames.length; i++) {
+    const curr = currGames[i];
+    if (curr.name.toLowerCase().includes(searchTerm.toLowerCase())) {
+      matches.push(curr);
+    }
+  }
+
+  deleteChildElements(gamesContainer);
+  addGamesToPage(matches);
+}
+
+function applySearchTerms(elem) {
+  const searchTerm = elem.target.value;
+  searchGames(searchTerm);
+}
+
+const searchBar = document.getElementById("search-box");
+
+searchBar.addEventListener("input", applySearchTerms);

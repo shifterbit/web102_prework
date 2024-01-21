@@ -147,3 +147,15 @@ button:hover {
     border-width: medium;
     border-style: solid;
 }
+
+
+#search-container {
+   display: flex; 
+   justify-content: center;
+}
+#search-box {
+    width: 40em;
+    height: 4em;
+    padding: none;
+    font-size: large;
+}
